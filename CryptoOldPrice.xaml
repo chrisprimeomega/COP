@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="869.6,1695.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="868,4069.6000000000004" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -44,6 +44,8 @@
       <x:String>UiPath.Excel.Model</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
       <x:String>System.Globalization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -112,6 +114,8 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap2010:WorkflowViewState.ViewStateManager>
@@ -126,44 +130,178 @@
       <sap2010:ViewStateData sap:VirtualizedContainerService.HintSize="869.6,602.4" Id="ActivityBuilder_1" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="697.6,1630.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CryptoOldPrice" sap:VirtualizedContainerService.HintSize="878.4,4004.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="price" />
-      <Variable x:TypeArguments="x:String" Name="apiResponse" />
-      <Variable x:TypeArguments="njl:JObject" Name="desResponse" />
-      <Variable x:TypeArguments="x:String" Name="cena" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dt_goliath" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Coins" />
+      <Variable x:TypeArguments="x:String" Name="str_Date" />
+      <Variable x:TypeArguments="x:String" Name="str_Currency" />
+      <Variable x:TypeArguments="x:String" Name="str_ApiUrl" />
+      <Variable x:TypeArguments="x:String" Name="str_ResponseJSON" />
+      <Variable x:TypeArguments="njl:JObject" Name="jo_DeserializeJSON" />
+      <Variable x:TypeArguments="x:String" Name="str_Price" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="635.2,749.6" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="816,3892.8" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
       <ueab:ExcelProcessScopeX.Body>
         <ActivityAction x:TypeArguments="ui:IExcelProcess">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="601.6,663.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="782.4,3806.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="539.2,551.2" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="C:\Users\krzys\OneDrive\Dokumenty\DavidVSGoliath.xlsx">
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="720,3694.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" KeepExcelFileOpen="True" ResizeWindow="Maximize" WorkbookPath="Coins.xlsx">
               <ueab:ExcelApplicationCard.Body>
                 <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="505.6,281.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="686.4,3424.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="443.2,169.6" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Table(&quot;GoliathSource&quot;)]" SaveTo="[dt_goliath]" />
+                    <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="624,169.6" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(&quot;Coins&quot;)]" SaveTo="[dt_Coins]" />
+                    <ueab:DeleteSheetX DisplayName="Delete Sheet" sap:VirtualizedContainerService.HintSize="624,90.4" sap2010:WorkflowViewState.IdRef="DeleteSheetX_1" Sheet="[Excel.Sheet(&quot;Coins&quot;)]" />
+                    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="624,241.6" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="[&quot;What date are you interested in?&quot;+vbnewline+&quot;Correct format: DD-MM-YYY&quot;+vbnewline+&quot;You have to use correct format and correct date, otherwise robot will crash&quot;]" Title="Date">
+                      <ui:InputDialog.Result>
+                        <OutArgument x:TypeArguments="x:String">[str_Date]</OutArgument>
+                      </ui:InputDialog.Result>
+                    </ui:InputDialog>
+                    <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[str_Currency = &quot;&quot;]" DisplayName="While" sap:VirtualizedContainerService.HintSize="624,521.6" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                      <ui:InterruptibleWhile.Body>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376.8,384.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="333.6,295.2" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="False" Label="[&quot;What currency would you like to see the price in?&quot;+vbnewline+&quot;Choose from supported currency&quot;]" OptionsString="pln;eur;usd;gbp;aed;ars;aud;bch;bdt;bhd;bmd;bnb;brl;btc;cad;chf;clp;cny;czk;dkk;eos;eth;hkd;huf;idr;ils;inr;jpy;krw;kwd;lkr;ltc;mmk;mxn;myr;ngn;nok;nzd;php;pkr;rub;sar;sek;sgd;thb;try;twd;uah;vef" Title="Currency">
+                            <ui:InputDialog.Result>
+                              <OutArgument x:TypeArguments="x:String">[str_Currency]</OutArgument>
+                            </ui:InputDialog.Result>
+                          </ui:InputDialog>
+                        </Sequence>
+                      </ui:InterruptibleWhile.Body>
+                    </ui:InterruptibleWhile>
+                    <If Condition="[NOT dt_Coins.Columns.Contains(str_Date)]" sap:VirtualizedContainerService.HintSize="624,460.8" sap2010:WorkflowViewState.IdRef="If_3">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="377.6,277.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="[str_Date]" DataTable="[dt_Coins]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9" />
+                      </If.Else>
+                    </If>
+                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Coins]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="624,1428.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                      <ui:ForEachRow.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="590.4,1240.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If Condition="[CurrentRow.Item(str_Date).ToString = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="547.2,1151.2" sap2010:WorkflowViewState.IdRef="If_1">
+                              <If.Then>
+                                <Sequence sap:VirtualizedContainerService.HintSize="513.6,968" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign sap:VirtualizedContainerService.HintSize="470.4,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[str_ApiUrl]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">["https://api.coingecko.com/api/v3/coins/"+CurrentRow.Item(1).ToString+"/history?date="+str_Date]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" DisplayName="Http client" EnableSSLVerification="True" EndPoint="[str_ApiUrl]" sap:VirtualizedContainerService.HintSize="470.4,71.2" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[str_ResponseJSON]" TimeoutMS="6000">
+                                    <ui:HttpClient.Attachments>
+                                      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                                    </ui:HttpClient.Attachments>
+                                    <ui:HttpClient.Cookies>
+                                      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                                    </ui:HttpClient.Cookies>
+                                    <ui:HttpClient.Headers>
+                                      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                                    </ui:HttpClient.Headers>
+                                    <ui:HttpClient.Parameters>
+                                      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                                    </ui:HttpClient.Parameters>
+                                    <ui:HttpClient.UrlSegments>
+                                      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                                    </ui:HttpClient.UrlSegments>
+                                  </ui:HttpClient>
+                                  <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="470.4,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jo_DeserializeJSON]" JsonString="[str_ResponseJSON]" />
+                                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="470.4,312.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                                    <TryCatch.Try>
+                                      <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[str_Price]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[jo_DeserializeJSON("market_data")("current_price")(str_Currency).toString]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </TryCatch.Try>
+                                    <TryCatch.Catches>
+                                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="436.8,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ActivityAction x:TypeArguments="s:Exception">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                          </ActivityAction.Argument>
+                                          <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[str_Price]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <Literal x:TypeArguments="x:String" Value="" />
+                                              </InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </ActivityAction>
+                                      </Catch>
+                                    </TryCatch.Catches>
+                                  </TryCatch>
+                                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="[str_Date]" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="470.4,192.8" sap2010:WorkflowViewState.IdRef="UpdateRowItem_1" Row="[CurrentRow]" Value="[str_Price]" />
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7" />
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEachRow.Body>
+                    </ui:ForEachRow>
+                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Coins&quot;)]" DisplayName="Write DataTable to Excel" sap:VirtualizedContainerService.HintSize="624,160" sap2010:WorkflowViewState.IdRef="WriteRangeX_1" IgnoreEmptySource="False" Source="[dt_Coins]" />
                   </Sequence>
                 </ActivityAction>
               </ueab:ExcelApplicationCard.Body>
@@ -172,48 +310,5 @@
         </ActivityAction>
       </ueab:ExcelProcessScopeX.Body>
     </ueab:ExcelProcessScopeX>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_goliath]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="635.2,270.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-      <ui:ForEachRow.Body>
-        <ActivityAction x:TypeArguments="sd:DataRow">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="300,82.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEachRow.Body>
-    </ui:ForEachRow>
-    <Assign sap:VirtualizedContainerService.HintSize="635.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[price]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">https://api.coingecko.com/api/v3/coins/bitcoin/history?date=28-11-2023</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" AuthenticationType="None" BodyFormat="application/xml" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="https://api.coingecko.com/api/v3/coins/bitcoin/history?date=28-11-2023" sap:VirtualizedContainerService.HintSize="635.2,71.2" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" Result="[apiResponse]" TimeoutMS="6000">
-      <ui:HttpClient.Attachments>
-        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-      </ui:HttpClient.Attachments>
-      <ui:HttpClient.Cookies>
-        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-      </ui:HttpClient.Cookies>
-      <ui:HttpClient.Headers>
-        <InArgument x:TypeArguments="x:String" x:Key="accept">application/json</InArgument>
-      </ui:HttpClient.Headers>
-      <ui:HttpClient.Parameters>
-        <InArgument x:TypeArguments="x:String" x:Key="Parameters">GET</InArgument>
-      </ui:HttpClient.Parameters>
-      <ui:HttpClient.UrlSegments>
-        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-      </ui:HttpClient.UrlSegments>
-    </ui:HttpClient>
-    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="635.2,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[desResponse]" JsonString="[apiResponse]" />
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="635.2,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[desResponse(&quot;market_data&quot;)(&quot;current_price&quot;)(&quot;pln&quot;).toString]" />
   </Sequence>
 </Activity>
